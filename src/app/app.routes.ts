@@ -9,25 +9,25 @@ export const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    component: MainLayout,
     children: [
       {
-        path: '',
-        component: MainLayout,
-        children: [
-          {
-            path: 'products',
-            component: Products
-          },
-          {
-            path: 'product/:id',
-            component: ProductDetail
-          }
-        ]
+        path: 'products',
+        component: Products,
+      },
+      {
+        path: 'product/:id',
+        component: ProductDetail,
       },
       {
         path: 'profile',
-        component: Profile
-      }
-    ]
-  }
+        component: Profile,
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'products',
+      },
+    ],
+  },
 ];

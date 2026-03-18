@@ -1,0 +1,51 @@
+.transactions-content {
+  background: #fff;
+  border-radius: 24px;
+  padding: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.transactions-section {
+  margin-top: 24px;
+}
+
+.transactions-list {
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.transaction-description {
+  flex: 1;
+}
+
+.transaction-amount.income {
+  color: green;
+}
+
+.transaction-amount.expense {
+  color: red;
+}
+
+.logout-button {
+  color: red;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}

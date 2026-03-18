@@ -17,6 +17,14 @@ export class UserAvatar {
   private authService = inject(AuthService);
   
   protected user$ = this.authService.user$;
+  protected readonly avatarPlaceholder = 'https://placehold.co/40x40?text=U';
+
+  protected onAvatarError(event: Event): void {
+    const image = event.target as HTMLImageElement;
+    if (image && image.src !== this.avatarPlaceholder) {
+      image.src = this.avatarPlaceholder;
+    }
+  }
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     effect(() => {

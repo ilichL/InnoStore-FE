@@ -1,43 +1,20 @@
 @if (isOpen()) {
-  <div class="dropdown-content">
-    <div class="user-info-section">
-      <div class="user-details">
-        <h1 class="user-name">{{ userName() }}</h1>
-        <p class="user-title">{{ userTitle() }}</p>
-      </div>
-      <a routerLink="/profile" class="nav-icon" (click)="onCloseClick()" aria-label="View profile">
-        <app-chevron-right-icon />
-      </a>
-    </div>
-    
-    <div class="transactions-section">
-      <h2 class="transactions-title">Транзакции</h2>
-      <div class="transactions-list">
-        @for (transaction of transactions(); track transaction.id) {
-          <div class="transaction-item">
-            <div class="transaction-icon" [class.income]="transaction.type === 'income'" [class.expense]="transaction.type === 'expense'">
-              @if (transaction.type === 'income') {
-                <app-arrow-up-icon />
-              } @else {
-                <app-arrow-down-icon />
-              }
-            </div>
-            <div class="transaction-details">
-              <p class="transaction-description">{{ transaction.description }}</p>
-            </div>
-            <div class="transaction-amount" [class.income]="transaction.type === 'income'" [class.expense]="transaction.type === 'expense'">
-              {{ transaction.type === 'income' ? '+' : '-' }}{{ transaction.amount }} P
-            </div>
-          </div>
-        }
-      </div>
-    </div>
+  <div class="modal-backdrop" (click)="closeModal.emit()">
+    <div class="dropdown-content" (click)="$event.stopPropagation()">
+      <div class="user-info-section">
+        <div class="user-details">
+          <h1 class="user-name">{{ userDetails()?.name || 'User' }}</h1>
+          <p class="user-title">
+            {{ userDetails()?.email || userDetails()?.nickname || '' }}
+          </p>
+        </div>
 
-    <div class="logout-divider"></div>
-    <div class="logout-section" (click)="logout()">
-        <i class="bi bi-box-arrow-right me-2"></i> 
-        <span>Выйти из системы</span>
-    </div>
+        <button type="button" class="nav-icon" (click)="goToProfile()" aria-label="Go to profile">
+          &#8250;
+        </button>
+      </div>
 
+      <div class="transactions-section"></div>
+    </div>
   </div>
 }
