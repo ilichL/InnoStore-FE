@@ -1,22 +1,5 @@
 <div class="profile-page">
   <div class="profile-card">
-    @if (user$ | async; as user) {
-      <div class="profile-header">
-        <div class="profile-avatar-wrap">
-          <img
-            class="profile-avatar"
-            [src]="user.picture || 'https://placehold.co/96x96/png'"
-            [alt]="user.name || 'User avatar'"
-          />
-        </div>
-
-        <h2 class="user-name">{{ user.name }}</h2>
-        <p class="user-title">Employee</p>
-      </div>
-    }
-
-    <div class="divider"></div>
-
     <div class="transactions-section">
       <h3 class="transactions-title">Транзакции</h3>
 
@@ -28,11 +11,9 @@
               [class.income]="transaction.type === 'income'"
               [class.expense]="transaction.type === 'expense'"
             >
-              @if (transaction.type === 'income') {
-                <app-arrow-up-icon></app-arrow-up-icon>
-              } @else {
-                <app-arrow-down-icon></app-arrow-down-icon>
-              }
+              <span>
+                {{ transaction.type === 'income' ? '↑' : '↓' }}
+              </span>
             </div>
 
             <div class="transaction-details">
