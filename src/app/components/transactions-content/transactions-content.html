@@ -15,31 +15,35 @@
   <section class="transactions-section">
     <h3>Транзакции</h3>
 
-    <div class="transactions-list">
-      @for (transaction of transactions(); track transaction.id) {
-        <div class="transaction-item">
-          <div class="transaction-icon">
-            @if (transaction.type === 'income') {
-              <app-arrow-up-icon></app-arrow-up-icon>
-            } @else {
-              <app-arrow-down-icon></app-arrow-down-icon>
-            }
-          </div>
+    @if (transactions().length > 0) {
+      <div class="transactions-list">
+        @for (transaction of transactions(); track transaction.id) {
+          <div class="transaction-item">
+            <div class="transaction-icon">
+              @if (transaction.type === 'income') {
+                <app-arrow-up-icon></app-arrow-up-icon>
+              } @else {
+                <app-arrow-down-icon></app-arrow-down-icon>
+              }
+            </div>
 
-          <div class="transaction-description">
-            {{ transaction.description }}
-          </div>
+            <div class="transaction-description">
+              {{ transaction.description }}
+            </div>
 
-          <div
-            class="transaction-amount"
-            [class.income]="transaction.type === 'income'"
-            [class.expense]="transaction.type === 'expense'"
-          >
-            {{ transaction.type === 'income' ? '+' : '-' }}{{ transaction.amount }} Р
+            <div
+              class="transaction-amount"
+              [class.income]="transaction.type === 'income'"
+              [class.expense]="transaction.type === 'expense'"
+            >
+              {{ transaction.type === 'income' ? '+' : '-' }}{{ transaction.amount }} Р
+            </div>
           </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    } @else {
+      <div class="transactions-empty">Нет транзакций</div>
+    }
   </section>
 
   <hr />

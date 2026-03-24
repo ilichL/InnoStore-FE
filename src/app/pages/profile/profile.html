@@ -1,37 +1,7 @@
-<div class="profile-page">
-  <div class="profile-card">
-    <div class="transactions-section">
-      <h3 class="transactions-title">Транзакции</h3>
-
-      <div class="transactions-list">
-        @for (transaction of transactions(); track transaction.id) {
-          <div class="transaction-item">
-            <div
-              class="transaction-icon"
-              [class.income]="transaction.type === 'income'"
-              [class.expense]="transaction.type === 'expense'"
-            >
-              <span>
-                {{ transaction.type === 'income' ? '↑' : '↓' }}
-              </span>
-            </div>
-
-            <div class="transaction-details">
-              <p class="transaction-label">{{ transaction.label }}</p>
-              <p class="transaction-description">{{ transaction.description }}</p>
-              <p class="transaction-date">{{ transaction.date }}</p>
-            </div>
-
-            <div
-              class="transaction-amount"
-              [class.income]="transaction.type === 'income'"
-              [class.expense]="transaction.type === 'expense'"
-            >
-              {{ transaction.type === 'income' ? '+' : '-' }}{{ transaction.amount }} P
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  </div>
-</div>
+@if (isLoading()) {
+  <div>Загрузка транзакций...</div>
+} @else if (hasError()) {
+  <div>Не удалось загрузить транзакции</div>
+} @else {
+  <app-transactions-content [transactions]="transactions()"></app-transactions-content>
+}

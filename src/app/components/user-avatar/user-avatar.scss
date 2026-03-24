@@ -6,24 +6,26 @@
 }
 
 .points-badge {
-  padding: 8px 16px;
-  border-radius: 20px;
-  background: #FF762114;
   display: inline-flex;
   align-items: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #ff762114;
 }
 
 .points {
   font-size: 16px;
   font-weight: 500;
-  color: #FF7621;
+  color: #ff7621;
 }
 
 .profile-link {
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
   border: none;
   background: none;
-  padding: 0;
+  text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s ease;
 
@@ -36,8 +38,10 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #e5e5e5;
   border: 1px solid #d0d0d0;
+  background: #e5e5e5;
+  object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -71,33 +75,5 @@
   .profile-avatar {
     width: 32px;
     height: 32px;
-  }
-}
-
-.profile-link {
-  text-decoration: none;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
-
-.profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #e5e5e5;
-  border: 1px solid #d0d0d0;
-  object-fit: cover;
-  
-  &.placeholder {
-    background: #e5e5e5;
   }
 }

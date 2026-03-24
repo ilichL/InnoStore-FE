@@ -3,7 +3,7 @@
     <span class="points">{{ userPoints() }} P</span>
   </div>
 
-  <button class="profile-link" (click)="openModal($event)" type="button" aria-label="Open profile">
+  <button class="profile-link" (click)="openModal()" type="button" aria-label="Open profile">
     <img
       [src]="user.picture || avatarPlaceholder"
       class="profile-avatar"
