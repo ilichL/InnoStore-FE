@@ -20,7 +20,7 @@
         @for (transaction of transactions(); track transaction.id) {
           <div class="transaction-item">
             <div class="transaction-icon">
-              @if (transaction.type === 'income') {
+              @if (transaction.icon === 'up') {
                 <app-arrow-up-icon></app-arrow-up-icon>
               } @else {
                 <app-arrow-down-icon></app-arrow-down-icon>
@@ -33,20 +33,20 @@
 
             <div
               class="transaction-amount"
-              [class.income]="transaction.type === 'income'"
-              [class.expense]="transaction.type === 'expense'"
+              [class.income]="transaction.amountClass === 'income'"
+              [class.neutral]="transaction.amountClass === 'neutral'"
             >
-              {{ transaction.type === 'income' ? '+' : '-' }}{{ transaction.amount }} Р
+              {{ transaction.amountPrefix }}{{ transaction.amount }} Р
             </div>
           </div>
         }
       </div>
     } @else {
-      <div class="transactions-empty">Нет транзакций</div>
+      <div class="transactions-empty">No transactions</div>
     }
   </section>
 
   <hr />
 
-  <button type="button" class="logout-button" (click)="logout()">Выйти из системы</button>
+  <button type="button" class="logout-button" (click)="logout()">Log out</button>
 </div>

@@ -1,34 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 
+import { TransactionsContent } from '../../components/transactions-content/transactions-content';
+import {
+  DEFAULT_TRANSACTION_PRESENTATION,
+  TRANSACTION_PRESENTATION_MAP,
+} from '../../core/constants/transaction-presentation.constants';
 import { ProfileTransaction, TransactionDto } from './profile.models';
 import { ProfileTransactionsService } from './profile-transactions.service';
-import { TransactionsContent } from '../../components/transactions-content/transactions-content';
-
-type TransactionPresentation = {
-  type: 'income' | 'expense';
-  label: string;
-  description: string;
-};
-
-const TRANSACTION_PRESENTATION_MAP: Record<number, TransactionPresentation> = {
-  1: {
-    type: 'income',
-    label: 'Начисление',
-    description: 'Участие в мероприятии',
-  },
-  2: {
-    type: 'expense',
-    label: 'Списание',
-    description: 'Списание средств',
-  },
-};
-
-const DEFAULT_TRANSACTION_PRESENTATION: TransactionPresentation = {
-  type: 'expense',
-  label: 'Операция',
-  description: 'Без описания',
-};
 
 @Component({
   selector: 'app-profile',
@@ -54,7 +33,7 @@ export class Profile {
 
     this.profileTransactionsService.getTransactions().subscribe({
       next: (response: TransactionDto[]) => {
-        this.transactions.set(response.map((t) => this.mapTransaction(t)));
+        this.transactions.set(response.map((transaction) => this.mapTransaction(transaction)));
         this.isLoading.set(false);
       },
       error: (error: unknown) => {
@@ -76,10 +55,13 @@ export class Profile {
       type: presentation.type,
       label: presentation.label,
       description: presentation.description,
+      amountPrefix: presentation.amountPrefix,
+      amountClass: presentation.amountClass,
+      icon: presentation.icon,
     };
   }
 
-  private getTransactionPresentation(transactionType: number): TransactionPresentation {
+  private getTransactionPresentation(transactionType: number) {
     return TRANSACTION_PRESENTATION_MAP[transactionType] ?? DEFAULT_TRANSACTION_PRESENTATION;
   }
 

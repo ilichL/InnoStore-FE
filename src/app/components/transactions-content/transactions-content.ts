@@ -3,10 +3,10 @@ import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 
-import { ChevronRightIcon } from '../icons/chevron-right-icon/chevron-right-icon';
-import { ArrowUpIcon } from '../icons/arrow-up-icon/arrow-up-icon';
-import { ArrowDownIcon } from '../icons/arrow-down-icon/arrow-down-icon';
 import { ProfileTransaction } from '../../pages/profile/profile.models';
+import { ArrowDownIcon } from '../icons/arrow-down-icon/arrow-down-icon';
+import { ArrowUpIcon } from '../icons/arrow-up-icon/arrow-up-icon';
+import { ChevronRightIcon } from '../icons/chevron-right-icon/chevron-right-icon';
 
 @Component({
   selector: 'app-transactions-content',
@@ -21,7 +21,7 @@ export class TransactionsContent {
 
   private authService = inject(AuthService);
 
-  protected readonly userName = computed(() => this.userDetails()?.name || 'Пользователь');
+  protected readonly userName = computed(() => this.userDetails()?.name || 'User');
   protected readonly userTitle = computed(() => this.userDetails()?.email || '');
 
   protected logout(): void {

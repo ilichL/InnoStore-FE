@@ -1,7 +1,7 @@
 @if (isLoading()) {
-  <div>Загрузка транзакций...</div>
+  <div>Loading transactions...</div>
 } @else if (hasError()) {
-  <div>Не удалось загрузить транзакции</div>
+  <div>Failed to load transactions</div>
 } @else {
   <app-transactions-content [transactions]="transactions()"></app-transactions-content>
 }
